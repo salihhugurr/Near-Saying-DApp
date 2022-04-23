@@ -4,9 +4,6 @@
 A new generation web3 blog application.You can share your sayings to people all around the world.And get in touch with them.
 
 
-[![Near Saying DApp](https://www.loom.com/share/6ec60305d2904dbc94018c728802b9df)](https://www.loom.com/share/6ec60305d2904dbc94018c728802b9df)
-
-
 
 # Cloning the project
 After cloning the project please run 

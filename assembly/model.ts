@@ -1,4 +1,4 @@
-import { PersistentUnorderedMap, math, Context } from "near-sdk-as";
+import { PersistentUnorderedMap, math, Context,u128,ContractPromiseBatch } from "near-sdk-as";
 
 
 export const sayings = new PersistentUnorderedMap<u32, Saying>("sayings");
@@ -10,12 +10,22 @@ export class Saying {
     score:u32;
     text:string;
     userId:string;
+    donation:u32;
 
     constructor(text: string) {
         this.id = math.hash32<string>(text);
         this.text = text;
         this.score = 0;
         this.userId = Context.predecessor;
+        this.donation = 0;
+    }
+
+    static insert(text:string):Saying {
+        const saying = new Saying(text);
+
+        sayings.set(saying.id,saying)
+
+        return saying;
     }
 
 
@@ -32,6 +42,16 @@ export class Saying {
         assert(Context.predecessor == saying.userId, `${id} is not your saying.Can not delete.`);
         sayings.delete(id)
         return `${id} is successfully deleted`;
+    }
+
+    static donate(id: u32): ContractPromiseBatch {
+        const saying = Saying.findById(id);
+        const toRecipient = ContractPromiseBatch.create(saying.userId);
+        const amount = u128.from('100000000000000000000000');
+        assert(Context.attachedDeposit <= amount, `You do not have enough near to donate.`);
+        saying.donation += 1;
+        sayings.set(id,saying);
+        return toRecipient.transfer(amount);
     }
 
     static upVote(id: u32): u32 {

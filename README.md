@@ -4,7 +4,7 @@
 A new generation web3 blog application.You can share your sayings to people all around the world.And get in touch with them.
 
 
-[![Near Saying DApp](https://discord.com/channels/954386374491009065/959397679937490994/967517746973798470)](https://www.loom.com/share/6ec60305d2904dbc94018c728802b9df)
+[![Near Saying DApp](https://www.loom.com/share/6ec60305d2904dbc94018c728802b9df)](https://www.loom.com/share/6ec60305d2904dbc94018c728802b9df)
 
 
 
